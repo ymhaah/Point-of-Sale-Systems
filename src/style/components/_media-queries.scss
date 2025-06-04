@@ -1,0 +1,248 @@
+@use "../global/index" as *;
+@use "../util/index" as *;
+
+// @include flexQueries(r, c, c);
+// @include flexForPhon(cr,2);
+// @include grid(2, 2, fr, 1rem)
+
+@media screen and (max-width: #{toEm(2560px)}) {
+}
+@media screen and (min-width: #{toEm(2560px)}) {
+}
+// For 4K
+@media screen and (min-width: #{toEm(1600px)}) {
+    .Container {
+        --container-width: calc(1600px - 6rem);
+    }
+}
+@media screen and (max-width: #{toEm(1600px)}) {
+    .Container {
+        // --container-width: 90%;
+    }
+}
+// For L Monitor
+
+@media screen and (max-width: #{toEm(1440px)}) {
+    // .Container {
+    // }
+}
+// For Monitor
+
+@media screen and (max-width: #{toEm(1024px)}) {
+    .Container {
+        // --container-width: calc(100% - 4rem);
+    }
+}
+@media screen and (min-width: #{toEm(1025px)}) {
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+}
+
+// For laptop, S-Monitor
+@media screen and (max-width: #{toEm(768px)}) {
+    .Container {
+        --container-width: calc(100% - 2.5rem);
+    }
+
+    // nav[data-state="opened"] {
+    //     display: block;
+    // }
+
+    // nav[data-state="closing"] {
+    //     animation: navSlideOut 0.3s var(--animation) forwards;
+    // }
+
+    // nav[data-state="closed"] {
+    //     display: none;
+    // }
+
+    // .Header nav {
+    //     background-color: var(--bg-clr-dark);
+    //     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    //     animation: navSlideIn 0.4s var(--animation) forwards;
+
+    //     li a {
+    //         color: var(--txt-clr-light);
+    //         font-size: 1.25rem;
+    //         opacity: 0;
+    //     }
+
+    //     .header__nav-list {
+    //         padding: 5rem 2rem;
+    //         height: 100%;
+    //     }
+    // }
+
+    // @keyframes navSlideIn {
+    //     from {
+    //         transform: translateX(100%);
+    //     }
+    //     to {
+    //         transform: translateX(0);
+    //     }
+    // }
+
+    // @keyframes navSlideOut {
+    //     from {
+    //         transform: translateX(0);
+    //     }
+    //     to {
+    //         transform: translateX(100%);
+    //     }
+    // }
+
+    // @keyframes fadeInRight {
+    //     from {
+    //         opacity: 0;
+    //         transform: translateX(20px);
+    //     }
+    //     to {
+    //         opacity: 1;
+    //         transform: translateX(0);
+    //     }
+    // }
+
+    // @keyframes fadeOutRight {
+    //     from {
+    //         opacity: 1;
+    //         transform: translateX(0);
+    //     }
+    //     to {
+    //         opacity: 0;
+    //         transform: translateX(20px);
+    //     }
+    // }
+
+    // .Header_nav {
+    //     .Nav_toggle-button {
+    //         width: 60px;
+    //         height: 60px;
+    //         border-radius: 50%;
+    //         background-color: var(--primary-clr);
+    //         transition: transform 0.3s var(--animation);
+
+    //         &:hover {
+    //             transform: scale(1.1);
+    //         }
+
+    //         .Nav_burger {
+    //             width: 100%;
+    //             &::after,
+    //             &::before {
+    //                 content: "";
+    //                 display: block;
+    //                 height: 2px;
+    //                 width: 30%;
+    //                 margin: auto;
+    //                 background-color: white;
+    //                 position: relative;
+    //                 transition: transform 0.3s var(--animation);
+    //             }
+    //             &::after {
+    //                 top: -4px;
+    //             }
+    //             &::before {
+    //                 top: 4px;
+    //             }
+    //         }
+    //         .burgerActive {
+    //             &::after {
+    //                 transform: rotate(45deg);
+    //                 top: -1px;
+    //             }
+    //             &::before {
+    //                 transform: rotate(-45deg);
+    //                 top: 1px;
+    //             }
+    //         }
+    //     }
+    // }
+}
+@media screen and (min-width: #{toEm(769px)}) {
+}
+
+@media screen and (min-width: #{toEm(425px)}) {
+}
+
+/*For tablets */
+
+// @media screen and (max-width: #{toEm(375px)}) {
+// 	.Container {
+// 	}
+// }
+// For S phones
+// @media screen and (max-width: #{toEm(320px)}) {
+// 	.Container {
+// 	}
+// }
+// For xS phones
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    // header nav a:hover,
+    // .button:hover,
+    // footer li {
+    //     opacity: 0.9;
+    // }
+    // header nav a:not(.button):hover {
+    //     text-decoration: underline;
+    // }
+    // footer li:first-child:hover {
+    //     transform: rotate(-10deg) scale(1.1);
+    // }
+    // footer li:nth-child(2):hover {
+    //     transform: scale(1.2);
+    // }
+    // footer li:last-child:hover {
+    //     transform: rotate(10deg) scale(1.1);
+    // }
+}
+
+// @supports (scroll-snap-points-y: repeat(100vh)) {
+// 	html,
+// 	html:focus-within {
+// 		scroll-snap-points-y: repeat(100vh);
+// 	}
+// }
+@supports (overflow-x: clip) {
+    html,
+    body {
+        overflow-x: clip;
+    }
+}
+@supports not (height: 100svh) {
+    .Loader {
+        height: 100vh;
+    }
+}
+@supports (aspect-ratio: 1 / 1) {
+}
+
+@supports not (inset: 0) {
+    .logo_studio {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+// put all the animation here if you will use them in css and delete the reduce one
+@media (prefers-reduced-motion: no-preference) {
+}
+/* For people who have motion sickness. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: initial !important;
+        scroll-behavior: auto !important;
+        transition-delay: 0s !important;
+        transition-duration: 0s !important;
+    }
+}

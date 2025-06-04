@@ -1,0 +1,171 @@
+@use "./colors.scss" as *;
+@use "../util/index" as *;
+
+/* 
+    ? font families
+--ff-inter -> sans-serif, main font
+--ff-playfair -> san
+--ff-modern_society -> display font, for Studio logo 
+--ff-rakkas -> display font, for hefnawy logo
+--ff-Diwani -> display font, for cool staff
+*/
+
+:root {
+    // ? font sizes
+    --fs-sm: #{toRem(11.4px)};
+    --fs-base: #{toRem(16.5px)};
+    --fs-md: #{toRem(20px)};
+    --fs-lg: #{toRem(40px)};
+    --fs-xl: #{toRem(100px)};
+    --fs-xxl: #{toRem(250px)};
+    --fs-xxxl: clamp(4.75rem, calc(35vw - 6rem), 25rem);
+
+    --ls-xs: -0.04em;
+    --ls-sm: -0.02em;
+    --ls-md: -0.015em;
+    --ls-lg: -0.01em;
+    --ls-base: 0em;
+    --ls-xl: 0.02em;
+}
+@media print {
+    :root {
+        --fs-sm: #{toRem(10px)};
+        --fs-base: #{toRem(14px)};
+        --fs-md: #{toRem(18px)};
+        --fs-lg: #{toRem(28px)};
+        --fs-xl: #{toRem(50px)};
+        --fs-xxl: #{toRem(80px)};
+        --fs-xxxl: #{toRem(100px)};
+    }
+}
+
+body {
+    font-family: var(--ff-inter);
+    font-size: var(--fs-base);
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: var(--ls-base);
+    font-weight: 450;
+    font-optical-sizing: auto;
+    font-feature-settings:
+        "liga" 1,
+        "calt" 1;
+    font-synthesis: none;
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+:where(h1, h2, h3, h4, p, a:not(.Button), span) {
+    margin: 0;
+    font-size: var(--fs-base);
+}
+:where(h1, h2, h3, h4) {
+    text-transform: capitalize;
+}
+// :where(h1, h2, h3, h4, p, span):not(:last-child) {
+//     margin: 0 0 0.5rem 0;
+// }
+.h1 {
+    font-weight: 700;
+    line-height: calc(1em * 1.1);
+    letter-spacing: var(--ls-sm);
+    margin: 0.5em 0;
+}
+.h3 {
+    font-weight: 700;
+    line-height: calc(1em * 1.2);
+    letter-spacing: var(--ls-md);
+    margin: 0.6em 0;
+}
+.h4 {
+    font-weight: 600;
+    line-height: calc(1em * 1.3);
+    letter-spacing: var(--ls-lg);
+    margin: 0.75em 0;
+}
+.p {
+    font-weight: 450;
+    margin: 0.6em 0;
+    text-decoration: none;
+}
+small,
+.small {
+    font-size: var(--fs-sm);
+    letter-spacing: var(--ls-xl);
+    font-weight: 200;
+    text-transform: uppercase;
+}
+
+.fs-sm {
+    font-size: var(--fs-sm);
+}
+.fs-base {
+    font-size: var(--fs-base);
+}
+.fs-md {
+    font-size: var(--fs-md);
+}
+.fs-lg {
+    font-size: var(--fs-lg);
+}
+.fs-xl {
+    font-size: var(--fs-xl);
+}
+.fs-xxl {
+    font-size: var(--fs-xxl);
+}
+.fs-xxxl {
+    font-size: var(--fs-xxxl);
+}
+
+.ls-xs {
+    letter-spacing: var(--ls-xs);
+}
+.ls-sm {
+    letter-spacing: var(--ls-sm);
+}
+.ls-md {
+    letter-spacing: var(--ls-md);
+}
+.ls-lg {
+    letter-spacing: var(--ls-lg);
+}
+.ls-base {
+    letter-spacing: var(--ls-base);
+}
+.ls-xl {
+    letter-spacing: var(--ls-xl);
+}
+
+:where(a:not(.Button), .Link) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+    color: var(--accent-clr, hsl(225, 7%, 12%));
+    text-decoration: underline;
+    .Icon {
+        padding-right: 0.4em;
+        width: 0.7em;
+        height: 0.7em;
+    }
+    .Icon.arrow {
+        transform: rotate(-45deg);
+        margin-left: -0.4em;
+    }
+}
+@media (hover: hover) and (pointer: fine) {
+    :where(a:not(.Button), .Link):hover {
+        opacity: 0.9;
+    }
+}
+input,
+button,
+textarea,
+a,
+select,
+span {
+    font: inherit;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+}
