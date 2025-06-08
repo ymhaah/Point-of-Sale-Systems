@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/lib/mergeTwClass.ts";
+import { cn } from "@/lib/mergeTwClass";
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
     return (

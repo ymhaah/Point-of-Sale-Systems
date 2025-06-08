@@ -31,7 +31,9 @@
             "@img/*": ["./src/assets/images/*"],
             "@icon/*": ["./src/assets/icons/*"],
             "@utils/*": ["./src/utils/*"],
-            "@pub/*": ["./public/*"]
+            "@pub/*": ["./public/*"],
+            "@lib/*": ["./src/lib/*"],
+            "@hooks/*": ["./src/hooks/*"]
         },
         "target": "ES2017"
     },

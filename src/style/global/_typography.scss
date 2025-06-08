@@ -138,27 +138,27 @@ small,
     letter-spacing: var(--ls-xl);
 }
 
-:where(a:not(.Button), .Link) {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25em;
-    color: var(--accent-clr, hsl(225, 7%, 12%));
-    text-decoration: underline;
-    .Icon {
-        padding-right: 0.4em;
-        width: 0.7em;
-        height: 0.7em;
-    }
-    .Icon.arrow {
-        transform: rotate(-45deg);
-        margin-left: -0.4em;
-    }
-}
-@media (hover: hover) and (pointer: fine) {
-    :where(a:not(.Button), .Link):hover {
-        opacity: 0.9;
-    }
-}
+// :where(a:not(.Button), .Link) {
+//     display: inline-flex;
+//     align-items: center;
+//     gap: 0.25em;
+//     color: var(--accent-clr, hsl(225, 7%, 12%));
+//     text-decoration: underline;
+//     .Icon {
+//         padding-right: 0.4em;
+//         width: 0.7em;
+//         height: 0.7em;
+//     }
+//     .Icon.arrow {
+//         transform: rotate(-45deg);
+//         margin-left: -0.4em;
+//     }
+// }
+// @media (hover: hover) and (pointer: fine) {
+//     :where(a:not(.Button), .Link):hover {
+//         opacity: 0.9;
+//     }
+// }
 input,
 button,
 textarea,
