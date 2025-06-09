@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function Dashboard() {
+function Products() {
     return (
         <div className="flex min-h-screen flex-col items-center justify-center">
             home
@@ -11,4 +11,4 @@ function Dashboard() {
         </div>
     );
 }
-export default Dashboard;
+export default Products;

@@ -1,11 +1,8 @@
+import { RoutesProvider } from "@context/routesContext.tsx";
+
 import type { Metadata } from "next";
 
 import ThemeProvider from "@ui/SiteThemeProvider.tsx";
-
-import Header from "@comp/Header.tsx";
-
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInset, SidebarProvider } from "@ui/sidebar.tsx";
 
 import { Inter, Geist_Mono, Geist } from "next/font/google";
 
@@ -53,13 +50,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <SidebarProvider>
-                        <AppSidebar />
-                        <SidebarInset>
-                            <Header />
-                            {children}
-                        </SidebarInset>
-                    </SidebarProvider>
+                    <RoutesProvider>{children}</RoutesProvider>
                 </ThemeProvider>
             </body>
         </html>
