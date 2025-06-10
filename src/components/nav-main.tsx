@@ -1,6 +1,6 @@
 "use client";
 
-import type { routeT } from "@types/routeT.ts";
+import type routeT from "@ts/routeT.ts";
 
 import { ChevronRight } from "lucide-react";
 

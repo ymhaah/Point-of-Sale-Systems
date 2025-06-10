@@ -1,6 +1,6 @@
 "use client";
 import { createContext } from "react";
-import type { routeT } from "@types/routeT";
+import type routeT from "@ts/routeT";
 import routes from "@data/routes.ts";
 
 const routesContext = createContext<routeT[]>([]);

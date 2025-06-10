@@ -18,7 +18,7 @@ export default Home;
 // ? 9/6/2025
 // // TODO: the sidebar main navigation
 // // TODO: main loading
-// TODO: finish the sidebar
+// // TODO: finish the sidebar
 
 // ? 10/6/2025
 // TODO: item component
@@ -30,3 +30,6 @@ export default Home;
 // products (item details) -> /products/[id]
 // Stock Management (Stock details) -> /stock/[id]
 // Sales (Sales details) -> /sales/[id]
+
+// TODO: use better naming for the sidebar components
+// TODO: logo and name

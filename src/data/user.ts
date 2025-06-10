@@ -1,4 +1,4 @@
-import userT from "@types/userT.ts";
+import type userT from "@ts/userT";
 
 const user: userT = {
     name: "youssef",

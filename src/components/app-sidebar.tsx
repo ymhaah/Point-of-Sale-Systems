@@ -2,6 +2,9 @@
 
 import { useContext } from "react";
 import { routesContext } from "@context/routesContext.tsx";
+import { usersContext } from "@context/userContext.tsx";
+
+import externalLinks from "@data/externalLinks.ts";
 
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
@@ -146,6 +149,7 @@ import { Command } from "lucide-react";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const routes = useContext(routesContext);
+    const user = useContext(usersContext);
 
     return (
         <Sidebar variant="inset" {...props}>
@@ -172,12 +176,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarHeader>
             <SidebarContent>
                 <NavMain routes={routes} />
-                {/* <NavProjects projects={data.projects} />
-                <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
+                {/* <NavProjects projects={data.projects} /> */}
+                <NavSecondary
+                    items={externalLinks.developerLinks}
+                    className="mt-auto"
+                />
             </SidebarContent>
-            {/* <SidebarFooter>
-                <NavUser user={data.user} />
-            </SidebarFooter> */}
+            <SidebarFooter>
+                <NavUser user={user} />
+            </SidebarFooter>
         </Sidebar>
     );
 }

@@ -1,4 +1,4 @@
-import type { routeT } from "@types/routeT";
+import type routeT from "@ts/routeT";
 
 import { LayoutDashboard, Package, Boxes, BarChart3 } from "lucide-react";
 

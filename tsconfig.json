@@ -35,7 +35,7 @@
             "@lib/*": ["./src/lib/*"],
             "@hooks/*": ["./src/hooks/*"],
             "@context/*": ["./src/context/*"],
-            "@types/*": ["./src/types/*"],
+            "@ts/*": ["./src/types/*"],
             "@data/*": ["./src/data/*"]
         },
         "target": "ES2017"

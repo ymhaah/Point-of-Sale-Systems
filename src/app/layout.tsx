@@ -1,4 +1,5 @@
 import { RoutesProvider } from "@context/routesContext.tsx";
+import { UserProvider } from "@context/userContext.tsx";
 
 import type { Metadata } from "next";
 
@@ -50,7 +51,9 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <RoutesProvider>{children}</RoutesProvider>
+                    <RoutesProvider>
+                        <UserProvider>{children}</UserProvider>
+                    </RoutesProvider>
                 </ThemeProvider>
             </body>
         </html>

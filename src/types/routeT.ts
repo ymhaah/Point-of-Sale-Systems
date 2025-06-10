@@ -1,6 +1,6 @@
-import { type LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-export type routeT = {
+type routeT = {
     title: string;
     url?: string;
     icon?: LucideIcon;
@@ -9,3 +9,4 @@ export type routeT = {
     subRoutes?: routeT[];
     isOpened?: boolean;
 };
+export default routeT;
