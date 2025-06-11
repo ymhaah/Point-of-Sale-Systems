@@ -7,8 +7,8 @@ import { PanelLeftIcon } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/mergeTwClass.ts";
-import { Button } from "@ui/Button.tsx";
-import { Input } from "@ui/Input.tsx";
+import { Button } from "@ui/button.tsx";
+import Input from "@ui/input.tsx";
 import { Separator } from "@/components/ui/separator";
 import {
     Sheet,

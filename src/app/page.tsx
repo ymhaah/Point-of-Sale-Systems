@@ -20,9 +20,9 @@ export default Home;
 // // TODO: main loading
 // // TODO: finish the sidebar
 
-// ? 10/6/2025
-// TODO: item component
-// TODO:
+// ? 11/6/2025
+// // TODO: next page route for the item details
+// //  TODO: input types
 
 // route
 // main -> /
