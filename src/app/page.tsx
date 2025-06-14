@@ -1,16 +1,15 @@
+"use client";
+
 import Link from "next/link";
 
-async function Home() {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
+function Home() {
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center">
-            home
-            <Link href="/Dashboard">dashboard</Link>
+        <main className="Dashboard | flex min-h-screen flex-col space-y-4 p-4 md:p-8">
+            <Link href="/">dashboard</Link>
             <Link href="/Products">products</Link>
             <Link href="/Stock">stock</Link>
             <Link href="/Sales">sales</Link>
-        </div>
+        </main>
     );
 }
 export default Home;
@@ -24,9 +23,12 @@ export default Home;
 // // TODO: next page route for the item details
 // //  TODO: input types
 
+// ? 12/6/2025
+// TODO:
+
 // route
 // main -> /
-// dashboard (main dashboard) -> /dashboard
+// dashboard (main dashboard) -> /
 // products (item details) -> /products/[id]
 // Stock Management (Stock details) -> /stock/[id]
 // Sales (Sales details) -> /sales/[id]

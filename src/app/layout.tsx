@@ -1,9 +1,13 @@
-import { RoutesProvider } from "@context/routesContext.tsx";
-import { UserProvider } from "@context/userContext.tsx";
-
 import type { Metadata } from "next";
 
+import Header from "@comp/Header.tsx";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@ui/sidebar.tsx";
 import ThemeProvider from "@ui/SiteThemeProvider.tsx";
+import { Toaster } from "@ui/sonner";
+
+import { RoutesProvider } from "@context/routesContext.tsx";
+import { UserProvider } from "@context/userContext.tsx";
 
 import { Inter, Geist_Mono, Geist } from "next/font/google";
 
@@ -28,7 +32,8 @@ const geist = Geist({
 export const metadata: Metadata = {
     title: "Point of Sale System",
     // colorScheme: "dark light",
-    // description: "",
+    description:
+        "Modern POS and inventory management system for small to medium businesses",
     // icons: {
     //     icon: [{ rel: "icon", type: "image/png", url: "/favicon.png" }],
     //     apple: "/apple-touch-icon.png",
@@ -52,8 +57,17 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <RoutesProvider>
-                        <UserProvider>{children}</UserProvider>
+                        <UserProvider>
+                            <SidebarProvider>
+                                <AppSidebar />
+                                <SidebarInset>
+                                    <Header />
+                                    {children}
+                                </SidebarInset>
+                            </SidebarProvider>
+                        </UserProvider>
                     </RoutesProvider>
+                    <Toaster />
                 </ThemeProvider>
             </body>
         </html>

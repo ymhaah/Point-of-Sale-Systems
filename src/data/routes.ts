@@ -5,7 +5,7 @@ import { LayoutDashboard, Package, Boxes, BarChart3 } from "lucide-react";
 const routes: routeT[] = [
     {
         title: "Dashboard",
-        url: "/Dashboard",
+        url: "/",
         icon: LayoutDashboard,
         type: "link",
         level: 0,
