@@ -28,6 +28,8 @@ import {
     productFormZodSchema,
 } from "@ts/ProductFieldT";
 
+import { toast } from "sonner";
+
 import {
     ArrowLeft,
     Upload,
@@ -65,7 +67,11 @@ const calculateDependentFields = (formValues: Record<string, any>) => {
         profitMargin: Number(profitMargin.toFixed(1)),
     };
 };
+
 export default function DynamicProductForm() {
+    // const { addProduct, lastAddedProduct, totalProducts } = useProducts();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const form = useForm<z.infer<typeof productFormZodSchema>>({
         resolver: zodResolver(productFormZodSchema),
         defaultValues: {
@@ -84,28 +90,46 @@ export default function DynamicProductForm() {
         return Object.values(errors).some((error) => !!error);
     }
 
-    // Calculate dependent fields
     useEffect(() => {
         const calculated = calculateDependentFields(formValues);
-        // Here you could update calculated fields if they were part of the form
-        console.log("Calculated values:", calculated);
     }, [
         formValues.wholesalePrice,
         formValues.retailPrice,
         formValues.itemsPerUnit,
     ]);
+    async function onSubmit(values: z.infer<typeof productFormZodSchema>) {
+        setIsSubmitting(true);
 
-    function onSubmit(values: z.infer<typeof productFormZodSchema>) {
-        const calculated = calculateDependentFields(values);
-        const completeData = { ...values, ...calculated };
-        console.log("Form submitted:", values);
-        // Handle form submission
+        try {
+            // Add product to context
+            // const newProduct = addProduct(values);
+            console.log("Submitting product:", values);
+
+            // Show success message
+            // toast(`${newProduct.name} has been added to your inventory.`);
+            toast(` has been added to your inventory.`);
+
+            // Reset form
+            form.reset();
+
+            // console.log("Product added:", newProduct);
+        } catch (error) {
+            toast("Failed to add product. Please try again.");
+            console.error("Error adding product:", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     return (
-        <div className="Container |">
-            <div className="space-y-2">
-                <Button variant="ghost" size="sm" asChild>
+        <div className="Container | mb-20 py-6">
+            <div className="mb-6">
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    asChild
+                    className="h-8 px-2 lg:px-3"
+                >
                     <Link href="/products">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Back to Products
@@ -115,23 +139,30 @@ export default function DynamicProductForm() {
 
             {hasErrors(form.formState.errors) &&
                 Object.keys(form.formState.touchedFields).length > 0 && (
-                    <Card className="border border-destructive bg-destructive/10 text-destructive dark:border-red-800 dark:bg-red-950/40 dark:text-red-300">
-                        <CardContent className="p-4">
-                            <div className="flex items-center gap-2 font-medium">
-                                <AlertCircle className="h-4 w-4" />
-                                <span>Please fix the following errors:</span>
+                    <Card className="mb-6 border-destructive bg-destructive/5">
+                        <CardContent className="pt-6">
+                            <div className="flex items-start gap-3">
+                                <AlertCircle className="mt-0.5 h-4 w-4 text-destructive" />
+                                <div className="flex-1 space-y-2">
+                                    <p className="text-sm font-medium text-destructive">
+                                        Please fix the following errors:
+                                    </p>
+                                    <ul className="space-y-1 text-sm text-destructive">
+                                        {Object.entries(
+                                            form.formState.errors
+                                        ).map(([field, error]) => (
+                                            <li
+                                                key={field}
+                                                className="flex items-center gap-2"
+                                            >
+                                                <div className="h-1 w-1 rounded-full bg-destructive" />
+                                                {(error as { message?: string })
+                                                    .message || "Invalid input"}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
-                            <ul className="mt-2 list-inside list-disc text-sm">
-                                {Object.entries(form.formState.errors).map(
-                                    ([field, error]) => (
-                                        <li key={field}>
-                                            -
-                                            {(error as { message?: string })
-                                                .message || "Invalid input"}
-                                        </li>
-                                    )
-                                )}
-                            </ul>
                         </CardContent>
                     </Card>
                 )}
@@ -139,73 +170,99 @@ export default function DynamicProductForm() {
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8"
+                    className="space-y-6"
                 >
-                    <Card className="grid gap-4">
-                        <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                                <h1 className="text-3xl font-bold tracking-tight">
-                                    Add New Product
-                                </h1>
-                            </CardTitle>
-                            <CardDescription>
-                                <p className="text-muted-foreground">
-                                    Fill in the details below to add a new
-                                    product to your inventory.
-                                </p>
-                            </CardDescription>
-                            <CardAction>
-                                <Button type="submit" variant="link">
-                                    Save Product
+                    <Card className="w-full">
+                        <CardHeader className="space-y-1">
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-1">
+                                    <CardTitle className="text-2xl font-semibold tracking-tight">
+                                        Add New Product
+                                    </CardTitle>
+                                    <CardDescription className="text-muted-foreground">
+                                        Fill in the details below to add a new
+                                        product to your inventory.
+                                    </CardDescription>
+                                </div>
+                                <Button type="submit" isDisabled={isSubmitting}>
                                     <Save className="mr-2 h-4 w-4" />
+                                    {isSubmitting
+                                        ? "Saving..."
+                                        : "Save Product"}
                                 </Button>
-                            </CardAction>
+                            </div>
                         </CardHeader>
-                        <CardContent>
-                            {productFields.map((field, index) => {
-                                return (
+
+                        <CardContent className="space-y-6">
+                            {/* Form Fields */}
+                            <div className="grid gap-6">
+                                {productFields.map((field, index) => (
                                     <DynamicInput
                                         key={index}
                                         field={field}
                                         form={form}
                                         formValues={formValues}
                                     />
-                                );
-                            })}
-                            <div className="grid grid-cols-1 gap-4 rounded-lg bg-muted p-4 md:grid-cols-2">
-                                <div>
-                                    <span className="text-sm font-medium text-muted-foreground">
-                                        Profit per Unit
-                                    </span>
-                                    <div className="text-2xl font-bold text-green-600">
-                                        $
-                                        {
-                                            calculateDependentFields(formValues)
-                                                .unitProfit
-                                        }
-                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Calculated Fields Display */}
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-2">
+                                    <Calculator className="h-4 w-4 text-muted-foreground" />
+                                    <h3 className="text-sm font-medium text-foreground">
+                                        Calculated Values
+                                    </h3>
                                 </div>
-                                <div>
-                                    <span className="text-sm font-medium text-muted-foreground">
-                                        Profit Margin
-                                    </span>
-                                    <div className="text-2xl font-bold text-green-600">
-                                        {
-                                            calculateDependentFields(formValues)
-                                                .profitMargin
-                                        }
-                                        %
+
+                                <div className="grid gap-4 rounded-lg border bg-muted/50 p-4 sm:grid-cols-2">
+                                    <div className="space-y-2">
+                                        <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                                            Profit per Unit
+                                        </p>
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="text-2xl font-bold text-green-600 dark:text-green-500">
+                                                $
+                                                {
+                                                    calculateDependentFields(
+                                                        formValues
+                                                    ).unitProfit
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                                            Profit Margin
+                                        </p>
+                                        <div className="flex items-baseline gap-1">
+                                            <span className="text-2xl font-bold text-green-600 dark:text-green-500">
+                                                {
+                                                    calculateDependentFields(
+                                                        formValues
+                                                    ).profitMargin
+                                                }
+                                                %
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </CardContent>
-                        <CardFooter className="flex space-x-4 pt-6">
-                            <Button type="submit" className="bg-primary">
+
+                        <CardFooter className="flex gap-3">
+                            <Button type="submit" isDisabled={isSubmitting}>
                                 <Save className="mr-2 h-4 w-4" />
-                                Save Product
+                                {isSubmitting ? "Saving..." : "Save Product"}
                             </Button>
-                            <Button type="button" variant="outline">
-                                Cancel
+                            <Button
+                                type="button"
+                                variant="outline"
+                                className="w-full sm:w-auto"
+                                asChild
+                            >
+                                <Link href="/products">Cancel</Link>
                             </Button>
                         </CardFooter>
                     </Card>

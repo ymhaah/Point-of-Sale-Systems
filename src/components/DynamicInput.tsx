@@ -47,7 +47,7 @@ function DynamicInput(props: {
                             )}
                             {field.label}
                             {field.required && (
-                                <Badge variant="destructive" className="px-1">
+                                <Badge variant="default" className="px-1">
                                     Required
                                 </Badge>
                             )}
@@ -122,14 +122,6 @@ function DynamicInput(props: {
                                                 : formField.value || ""
                                         }
                                     />
-                                    {field.unit && (
-                                        <Badge
-                                            variant="outline"
-                                            className="absolute top-1/2 right-2 -translate-y-1/2 text-xs"
-                                        >
-                                            {field.unit}
-                                        </Badge>
-                                    )}
                                 </div>
                             ) : field.type === "image" ? (
                                 // <ImageUpload formField={formField} />

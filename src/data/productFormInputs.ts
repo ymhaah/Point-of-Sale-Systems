@@ -29,13 +29,7 @@ const productFields: ProductFieldT[] = [
         icon: BadgeInfo,
         placeholder: "e.g., Premium Gel Pen",
         inputCategory: "Info",
-        fullWidth: false,
-        gridSpan: 6,
         autoComplete: "name",
-        validation: {
-            min: 2,
-            max: 50,
-        },
     },
     {
         inputId: 2,
@@ -47,12 +41,6 @@ const productFields: ProductFieldT[] = [
         placeholder:
             "Describe your product features, benefits, and specifications...",
         inputCategory: "Info",
-        fullWidth: true,
-        gridSpan: 12,
-        validation: {
-            min: 2,
-            max: 500,
-        },
     },
     // ? Pricing Section
     {
@@ -66,13 +54,8 @@ const productFields: ProductFieldT[] = [
         step: 0.01,
         inputMode: "decimal",
         inputCategory: "Pricing",
-        gridSpan: 6,
         placeholder: "0.00",
         description: "Price you pay to purchase this product",
-        validation: {
-            min: 0.01,
-            max: 999999.99,
-        },
     },
     {
         inputId: 4,
@@ -85,36 +68,22 @@ const productFields: ProductFieldT[] = [
         step: 0.01,
         inputMode: "decimal",
         inputCategory: "Pricing",
-        gridSpan: 6,
         placeholder: "0.00",
         description: "Price you sell this product for",
-        validation: {
-            min: 0.01,
-            max: 999999.99,
-        },
-        dependsOn: ["wholesalePrice"],
-        condition: (values) => values.wholesalePrice > 0,
     },
 
     // ? Unit Details Section
     {
         inputId: 5,
-        name: "itemsPerUnit", // ✅ Match schema field name
+        name: "itemsPerUnit",
         label: "Items per Unit",
         type: "number",
-        required: true, // ✅ Match schema requirement
+        required: true,
         icon: PackageOpen,
         placeholder: "e.g., 12",
         inputCategory: "Details",
-        gridSpan: 4,
         step: 1,
         inputMode: "numeric",
-        defaultValue: 1,
-        description: "How many individual items come in one unit/package",
-        validation: {
-            min: 1,
-            max: 10000,
-        },
     },
     {
         inputId: 6,
@@ -126,14 +95,8 @@ const productFields: ProductFieldT[] = [
         step: 1,
         inputMode: "numeric",
         inputCategory: "Stock",
-        gridSpan: 6,
-        defaultValue: 0,
         placeholder: "0",
         description: "Current stock quantity in your inventory",
-        validation: {
-            min: 0,
-            max: 1000000,
-        },
     },
 ];
 // const productFields: ProductFieldT[] = [

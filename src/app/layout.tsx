@@ -8,6 +8,7 @@ import { Toaster } from "@ui/sonner";
 
 import { RoutesProvider } from "@context/routesContext.tsx";
 import { UserProvider } from "@context/userContext.tsx";
+import { ProductProvider } from "@context/ProductContext";
 
 import { Inter, Geist_Mono, Geist } from "next/font/google";
 
@@ -58,13 +59,15 @@ export default function RootLayout({
                 >
                     <RoutesProvider>
                         <UserProvider>
-                            <SidebarProvider>
-                                <AppSidebar />
-                                <SidebarInset>
-                                    <Header />
-                                    {children}
-                                </SidebarInset>
-                            </SidebarProvider>
+                            <ProductProvider>
+                                <SidebarProvider>
+                                    <AppSidebar />
+                                    <SidebarInset>
+                                        <Header />
+                                        {children}
+                                    </SidebarInset>
+                                </SidebarProvider>
+                            </ProductProvider>
                         </UserProvider>
                     </RoutesProvider>
                     <Toaster />
